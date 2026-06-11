@@ -29,7 +29,7 @@
 </nav>
 
 <!-- Hero Section -->
-<section class="hero-section position-relative overflow-hidden" style="background: linear-gradient(135deg, #8B0000 0%, #C41E3A 100%); min-height: 100vh; display: flex; align-items: center;">
+<section class="hero-section position-relative overflow-hidden" style="background: linear-gradient(135deg, #8B0000 0%, #C41E3A 100%); min-height: 100vh; display: flex; align-items: center; background-size: cover; background-position: center; background-repeat: no-repeat; background-image: url('{{ asset('storage/images/hero-bg.jpg') }}');">
     <div class="container-fluid position-relative z-2">
         <div class="row align-items-center">
             <div class="col-lg-6">
@@ -51,8 +51,8 @@
                 </div>
             </div>
             <div class="col-lg-6 position-relative">
-                <div class="hero-image-wrapper">
-                    <div class="hero-shape" style="width: 300px; height: 400px; background: rgba(255,255,255,0.1); border-radius: 20px; margin: 50px auto;"></div>
+                <div class="hero-image-wrapper d-flex justify-content-center align-items-center">
+                    <img src="{{ asset('storage/images/hero-card.jpg') }}" alt="Hero" class="img-fluid rounded-4" style="width:320px; height:420px; object-fit:cover; margin:50px auto; box-shadow: 0 20px 40px rgba(0,0,0,0.2);">
                 </div>
             </div>
         </div>
