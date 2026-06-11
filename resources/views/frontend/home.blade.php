@@ -65,7 +65,7 @@
 </nav>
 
 <!-- Hero Section -->
-<section class="hero-section position-relative overflow-hidden" style="background: linear-gradient(135deg, #8B0000 0%, #C41E3A 100%); min-height: 100vh; display: flex; align-items: center; background-size: cover; background-position: center; background-repeat: no-repeat; background-image: url('{{ asset('storage/images/hero-bg.jpg') }}');">
+<section class="hero-section position-relative overflow-hidden" style="background: linear-gradient(135deg, #8B0000 0%, #C41E3A 100%); min-height: 100vh; display: flex; align-items: center; background-size: cover; background-position: center; background-repeat: no-repeat; background-image: url('{{ asset('images/hero-bg.jpg') }}');">
     <div class="container-fluid position-relative z-2">
         <div class="row align-items-center">
             <div class="col-lg-6">
@@ -92,7 +92,7 @@
                     <!-- Featured card: premium hero-side article (glassmorphism) -->
                     <article class="featured-card" aria-labelledby="featured-title">
                         {{-- Featured media --}}
-                        <img class="featured-media" src="{{ $featured && $featured->image ? asset('storage/' . $featured->image) : asset('storage/images/hero-card.jpg') }}" alt="{{ $featured->title ?? 'Featured' }}">
+                        <img class="featured-media" src="{{ $featured && $featured->image ? asset('storage/' . $featured->image) : asset('images/hero-card.jpg') }}" alt="{{ $featured->title ?? 'Featured' }}">
 
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-start">
@@ -143,7 +143,7 @@
             </div>
             <div class="col-lg-6">
                 <div class="about-images position-relative">
-                    <img src="{{ asset('storage/images/about-card.jpg') }}" alt="About" class="img-fluid rounded-4" style="width:100%; height:400px; object-fit:cover;">
+                    <img src="{{ asset('images/about-card.jpg') }}" alt="About" class="img-fluid rounded-4" style="width:100%; height:400px; object-fit:cover;">
                 </div>
             </div>
         </div>
