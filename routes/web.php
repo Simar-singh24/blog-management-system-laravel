@@ -4,8 +4,20 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', [BlogController::class, 'index'])->name('home');
+
+// Local debug route to inspect auth/session state quickly
+if (app()->environment('local')) {
+    Route::get('/admin/debug', function () {
+        return response()->json([
+            'auth' => Auth::check(),
+            'user' => Auth::user(),
+            'session_id' => session()->getId(),
+        ]);
+    });
+}
 Route::get('/blogs/{id}', [BlogController::class, 'show'])->name('blogs.show');
 Route::post('/blogs/filter', [BlogController::class, 'filter'])->name('blogs.filter');
 
