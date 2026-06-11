@@ -198,6 +198,10 @@ All filtering is done via AJAX without page reload.
 - Smooth page transitions
 - Infinite scrolling ticker
 
+---
+
+Note: Minor UI tweaks and featured-card enhancements were applied for a more premium hero experience.
+
 ### Image Upload
 - Support for JPEG, PNG, GIF
 - Max file size: 2MB
