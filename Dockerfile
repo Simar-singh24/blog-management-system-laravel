@@ -47,6 +47,13 @@ RUN if [ -f package.json ]; then npm ci --silent && npm run build --silent || tr
 
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache || true
 
+# Copy seed images to public directory for reliable serving on Render
+RUN mkdir -p /var/www/html/public/images && \
+    if [ -d /var/www/html/storage/app/public/images ]; then \
+        cp -r /var/www/html/storage/app/public/images/* /var/www/html/public/images/ 2>/dev/null || true; \
+    fi && \
+    chown -R www-data:www-data /var/www/html/public/images || true
+
 # Copy Nginx configuration
 COPY nginx.conf /etc/nginx/sites-available/default
 RUN mkdir -p /etc/nginx/sites-enabled && \

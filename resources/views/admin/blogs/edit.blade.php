@@ -148,7 +148,7 @@
                                         <input type="file" name="image" class="form-control @error('image') is-invalid @enderror" accept="image/*" onchange="previewImage(event)">
                                         @error('image') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                         @if($blog->image)
-                                            <img src="{{ asset('storage/' . $blog->image) }}" class="image-preview" id="imagePreview">
+                                            <img src="{{ asset('images/' . $blog->image) }}" class="image-preview" id="imagePreview">
                                         @else
                                             <img id="imagePreview" class="image-preview" style="display: none;">
                                         @endif

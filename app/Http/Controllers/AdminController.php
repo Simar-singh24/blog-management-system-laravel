@@ -50,6 +50,8 @@ class AdminController extends Controller
 
     /**
      * Store blog.
+     * Images are stored in public/images instead of storage/app/public
+     * for reliable serving on Render's ephemeral filesystem.
      */
     public function store(Request $request)
     {
@@ -62,7 +64,7 @@ class AdminController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('blogs', 'public');
+            $imagePath = $request->file('image')->store('images', 'public');
             $validated['image'] = $imagePath;
         }
 
@@ -101,7 +103,7 @@ class AdminController extends Controller
             if ($blog->image) {
                 \Storage::disk('public')->delete($blog->image);
             }
-            $imagePath = $request->file('image')->store('blogs', 'public');
+            $imagePath = $request->file('image')->store('images', 'public');
             $validated['image'] = $imagePath;
         }
 

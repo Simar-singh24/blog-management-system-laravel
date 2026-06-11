@@ -4,7 +4,7 @@
             <!-- Blog Image -->
             <div class="position-relative overflow-hidden" style="height: 250px; background: linear-gradient(135deg, #8B0000, #C41E3A);">
                 @if($blog->image)
-                    <img src="{{ asset('storage/' . $blog->image) }}" alt="{{ $blog->title }}" class="w-100 h-100 object-fit-cover">
+                    <img src="{{ asset('images/' . $blog->image) }}" alt="{{ $blog->title }}" class="w-100 h-100 object-fit-cover">
                 @else
                     <div class="w-100 h-100 d-flex align-items-center justify-content-center">
                         <i class="fas fa-image text-white" style="font-size: 3rem; opacity: 0.5;"></i>
