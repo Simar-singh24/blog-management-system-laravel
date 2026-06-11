@@ -9,4 +9,3 @@ storage/logs
 .idea
 .vscode
 /.github
-docker-entrypoint.sh
