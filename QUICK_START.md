@@ -40,6 +40,8 @@ php artisan serve
 
 Visit: http://localhost:8000
 
+> Tip: The homepage includes a featured article card and a newsletter signup in the footer.
+
 ## 📝 Demo Credentials
 
 **Admin Login:**
