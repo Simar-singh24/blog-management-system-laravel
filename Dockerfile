@@ -10,12 +10,14 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     libxml2-dev \
     libzip-dev \
+    libsqlite3-dev \
+    sqlite3 \
     nodejs \
     npm \
     && rm -rf /var/lib/apt/lists/*
 
 # Install extensions
-RUN docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath gd zip intl
+RUN docker-php-ext-install pdo pdo_mysql pdo_sqlite mbstring exif pcntl bcmath gd zip intl
 
 # Install composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
