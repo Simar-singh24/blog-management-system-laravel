@@ -2,6 +2,42 @@
 
 @section('title', 'Home - Blog Dashboard')
 
+@section('styles')
+<style>
+/* Featured Article Card - Glassmorphism premium card */
+.featured-card-wrapper { display:flex; justify-content:center; align-items:center; }
+.featured-card { position: relative; width: 340px; max-width:100%; border-radius:24px; overflow:hidden; background: rgba(255,255,255,0.06); box-shadow: 0 10px 30px rgba(0,0,0,0.25); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.06); transition: transform .25s ease, box-shadow .25s ease; }
+.featured-card:hover{ transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.35); }
+.featured-card .featured-media{ width:100%; height:200px; object-fit:cover; display:block; }
+.featured-card .card-body{ padding:18px; }
+.featured-badge{ display:inline-block; background: rgba(255,255,255,0.06); color:#fff; padding:6px 10px; border-radius:999px; font-size:13px; font-weight:600; backdrop-filter: blur(6px); }
+.featured-title{ font-size:1.25rem; font-weight:700; margin:12px 0; color:#fff; line-height:1.2; }
+.featured-meta{ font-size:0.9rem; color:rgba(255,255,255,0.75); display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+.featured-desc{ color:rgba(255,255,255,0.85); margin-top:10px; font-size:0.95rem; }
+.featured-cta{ display:inline-block; margin-top:14px; color:#8B0000; font-weight:700; text-decoration:none; }
+
+/* Responsive: make card full width on small screens */
+@media (max-width: 991px){
+    .featured-card { width: 380px; margin: 0 auto; }
+}
+@media (max-width: 576px){
+    .featured-card { width: 100%; border-radius:18px; }
+    .featured-card .featured-media{ height:180px; }
+}
+
+/* Ticker (continuous) */
+.ticker-track{ display:flex; gap:100px; align-items:center; white-space:nowrap; }
+.ticker-item{ color:#fff; font-size:2rem; font-weight:800; }
+@keyframes tickerScroll{ 0%{ transform: translateX(0%);} 100%{ transform: translateX(-50%);} }
+.ticker-track.animate{ animation: tickerScroll 20s linear infinite; }
+
+/* Footer newsletter */
+.footer-newsletter .form-control{ max-width:420px; border-radius:6px 0 0 6px; }
+.footer-newsletter .btn{ border-radius:0 6px 6px 0; }
+
+</style>
+@endsection
+
 @section('content')
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background: rgba(139, 0, 0, 0.95);">
@@ -51,8 +87,33 @@
                 </div>
             </div>
             <div class="col-lg-6 position-relative">
-                <div class="hero-image-wrapper d-flex justify-content-center align-items-center">
-                    <img src="{{ asset('storage/images/hero-card.jpg') }}" alt="Hero" class="img-fluid rounded-4" style="width:320px; height:420px; object-fit:cover; margin:50px auto; box-shadow: 0 20px 40px rgba(0,0,0,0.2);">
+                @php $featured = $blogs->first(); @endphp
+                <div class="featured-card-wrapper">
+                    <!-- Featured card: premium hero-side article (glassmorphism) -->
+                    <article class="featured-card" aria-labelledby="featured-title">
+                        {{-- Featured media --}}
+                        <img class="featured-media" src="{{ $featured && $featured->image ? asset('storage/' . $featured->image) : asset('storage/images/hero-card.jpg') }}" alt="{{ $featured->title ?? 'Featured' }}">
+
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <span class="featured-badge">{{ $featured && $featured->category ? $featured->category->name : 'Featured' }}</span>
+                            </div>
+
+                            <h3 id="featured-title" class="featured-title">{{ $featured->title ?? 'A Featured Story From Our Collection' }}</h3>
+
+                            <div class="featured-meta">
+                                <span>By {{ $featured ? ($featured->author_name ?? 'Admin') : 'Admin' }}</span>
+                                <span>&middot;</span>
+                                <span>{{ $featured ? $featured->formatted_date : now()->format('M d, Y') }}</span>
+                                <span>&middot;</span>
+                                <span>{{ $featured ? $featured->reading_time . ' min read' : '3 min read' }}</span>
+                            </div>
+
+                            <p class="featured-desc">{{ $featured->short_description ?? 'Dive into this specially curated article that highlights creativity, strategy, and design—perfect for readers who want both inspiration and practical insights.' }}</p>
+
+                            <a href="{{ $featured ? url('/blogs/'.$featured->id) : '#' }}" class="featured-cta">Read Article &rarr;</a>
+                        </div>
+                    </article>
                 </div>
             </div>
         </div>
@@ -82,7 +143,7 @@
             </div>
             <div class="col-lg-6">
                 <div class="about-images position-relative">
-                    <div style="background: linear-gradient(135deg, #8B0000, #C41E3A); width: 100%; height: 400px; border-radius: 20px;"></div>
+                    <img src="{{ asset('storage/images/about-card.jpg') }}" alt="About" class="img-fluid rounded-4" style="width:100%; height:400px; object-fit:cover;">
                 </div>
             </div>
         </div>
@@ -140,12 +201,11 @@
 </section>
 
 <!-- Ticker Section -->
-<section class="ticker-section py-5" style="background: #8B0000; overflow: hidden;">
+<section class="ticker-section py-3" style="background: #8B0000; overflow: hidden;">
     <div class="container-fluid">
-        <div class="ticker-content" style="white-space: nowrap;">
-            <span style="display: inline-block; color: white; font-size: 2rem; font-weight: bold; margin-right: 100px; animation: scroll-left 20s linear infinite;">
-                ✨ Creative Content ✨ Social Strategy ✨ Visual Design ✨ Digital Marketing ✨ Creative Content ✨ Social Strategy ✨
-            </span>
+        <div class="ticker-track animate" aria-hidden="true">
+            <div class="ticker-item">✨ Creative Content ✨ Social Strategy ✨ Visual Design ✨ Digital Marketing ✨ Creative Content ✨ Social Strategy ✨</div>
+            <div class="ticker-item">✨ Creative Content ✨ Social Strategy ✨ Visual Design ✨ Digital Marketing ✨ Creative Content ✨ Social Strategy ✨</div>
         </div>
     </div>
 </section>
@@ -181,6 +241,16 @@
                     <i class="fas fa-envelope me-2"></i>info@blogdashboard.com<br>
                     <i class="fas fa-phone me-2"></i>+1 (555) 123-4567
                 </p>
+            </div>
+        </div>
+        <div class="row mb-4 footer-newsletter">
+            <div class="col-12 text-center">
+                <form action="#" method="POST" class="d-flex justify-content-center align-items-center gap-2" style="max-width:720px;margin:0 auto;">
+                    @csrf
+                    <input type="email" name="email" class="form-control form-control-lg rounded-0" placeholder="Enter your email to get highlights" aria-label="Email">
+                    <button class="btn btn-danger btn-lg rounded-0">Subscribe</button>
+                </form>
+                <p class="text-muted small mt-2">Monthly highlights, featured articles, and creative tips — delivered to your inbox.</p>
             </div>
         </div>
         <hr class="bg-secondary">
@@ -316,6 +386,26 @@ $(document).ready(function() {
                 start: 'top 85%',
                 toggleActions: 'play none none none'
             }
+        });
+    });
+
+    // Featured card floating effect
+    gsap.to('.featured-card', {
+        y: -8,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut',
+        duration: 3,
+        delay: 0.6
+    });
+
+    // Hover interaction for featured card (subtle scale)
+    document.querySelectorAll('.featured-card').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            gsap.to(card, { scale: 1.02, duration: 0.2 });
+        });
+        card.addEventListener('mouseleave', () => {
+            gsap.to(card, { scale: 1, duration: 0.2 });
         });
     });
 });
