@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog Detail — The Creative Co.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body class="detail-page">
+
+  <!-- ═══ NAVBAR ═══ -->
+  <nav class="navbar navbar-expand-lg cc-navbar sticky-top" id="mainNavbar">
+    <div class="container-xl">
+      <a class="navbar-brand cc-logo" href="index.html">
+        <span class="logo-box">CR<br>CO</span>
+      </a>
+      <button class="navbar-toggler cc-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+          <li class="nav-item"><a class="nav-link cc-nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link cc-nav-link" href="index.html#blogContainer">Blogs</a></li>
+          <li class="nav-item"><a class="nav-link cc-nav-link" href="index.html#categoriesSection">Categories</a></li>
+          <li class="nav-item ms-lg-3">
+            <a class="btn cc-btn-outline" href="#">Admin Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══ DETAIL HERO IMAGE ═══ -->
+  <!-- Laravel: src="{{ Storage::url($blog->image) }}" -->
+  <div class="detail-hero" id="detailHero">
+    <div class="detail-hero-overlay"></div>
+    <div class="container-xl h-100 position-relative">
+      <div class="detail-hero-meta">
+        <!-- Category badge — Laravel: {{ $blog->category->name }} -->
+        <span class="cc-badge" id="detailCategory">Social Strategy &amp; Creation</span>
+        <h1 class="detail-hero-title" id="detailTitle">How Feathered Lane Studios Built a Cult Following Through Intentional Content</h1>
+        <div class="detail-meta-row">
+          <span class="detail-date"><i class="bi bi-calendar3"></i> <span id="detailDate">May 22, 2025</span></span>
+          <span class="detail-read-time"><i class="bi bi-clock"></i> 6 min read</span>
+          <span class="detail-author"><i class="bi bi-person"></i> Creative Co. Team</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ BACK BUTTON ═══ -->
+  <div class="detail-back-bar">
+    <div class="container-xl">
+      <a href="index.html" class="detail-back-btn">
+        <i class="bi bi-arrow-left-long"></i> Back to Blogs
+      </a>
+    </div>
+  </div>
+
+  <!-- ═══ BLOG CONTENT ═══ -->
+  <section class="detail-content-section">
+    <div class="container-xl">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+
+          <!-- Loading Spinner (shown while AJAX fetches blog data) -->
+          <div id="detailSpinner" class="cc-spinner-wrap d-none">
+            <div class="cc-spinner">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+
+          <!-- Blog Content — Laravel: {!! $blog->content !!} -->
+          <article class="detail-article" id="detailContent">
+            <p class="detail-lead">In a world saturated with content, Feathered Lane Studios made a bold choice: slow down, say less, and mean every pixel of it. The result? A community that doesn't just follow — it advocates.</p>
+
+            <h2>The Strategy Behind the Silence</h2>
+            <p>Most agencies push volume. Post daily, hit every trend, repurpose everything. Feathered Lane Studios took the opposite path — they posted three times a week with a singular visual language that felt like editorial fashion photography mixed with desert minimalism.</p>
+            <p>We worked with their team to define what we call a "content fingerprint": a locked-down set of aesthetic rules that governed everything from grid composition to caption tone. No emoji. No hashtag stacks. No trend-chasing.</p>
+
+            <blockquote class="detail-blockquote">
+              "When you stop performing and start communicating, your audience shifts from scrollers to believers."
+            </blockquote>
+
+            <h2>Building the Content Architecture</h2>
+            <p>We mapped their audience's awareness journey into four content types — education, inspiration, social proof, and conversion — and balanced each week's output across all four. Every post had a role. Nothing was decorative.</p>
+
+            <h2>The Numbers That Followed</h2>
+            <p>Within 90 days of launching the new strategy, Feathered Lane Studios saw a 340% increase in saves, a 2.1x growth in profile visits, and — most importantly — their DM conversion rate for inquiries nearly doubled. The content wasn't just performing; it was converting.</p>
+
+            <h2>What You Can Take Away</h2>
+            <p>You don't need more content. You need sharper content. Define your visual language. Protect it fiercely. Speak to one person, not everyone. The audience you want is looking for a reason to commit — your job is to give them one, clearly and consistently.</p>
+          </article>
+
+          <!-- Tags -->
+          <div class="detail-tags" id="detailTags">
+            <span class="detail-tag">Content Strategy</span>
+            <span class="detail-tag">Social Media</span>
+            <span class="detail-tag">Brand Building</span>
+            <span class="detail-tag">Case Study</span>
+          </div>
+
+          <!-- Share Bar -->
+          <div class="detail-share">
+            <p class="share-label">Share this article</p>
+            <div class="share-icons">
+              <a href="#" class="share-icon" aria-label="Share on Twitter"><i class="bi bi-twitter-x"></i></a>
+              <a href="#" class="share-icon" aria-label="Share on LinkedIn"><i class="bi bi-linkedin"></i></a>
+              <a href="#" class="share-icon" aria-label="Copy Link"><i class="bi bi-link-45deg"></i></a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-lg-3 offset-lg-1">
+          <div class="detail-sidebar">
+
+            <div class="sidebar-widget">
+              <p class="sidebar-heading">Related Articles</p>
+              <div id="relatedBlogs">
+                <!-- Laravel: populated via AJAX /api/blogs?category_id=X&exclude=Y -->
+              </div>
+            </div>
+
+            <div class="sidebar-widget">
+              <p class="sidebar-heading">Categories</p>
+              <ul class="sidebar-cats" id="sidebarCategories">
+                <!-- Laravel: populated via AJAX /api/categories -->
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ MORE ARTICLES ═══ -->
+  <section class="detail-more-section">
+    <div class="container-xl">
+      <div class="section-header">
+        <h2 class="section-title">MORE ARTICLES</h2>
+        <a href="index.html" class="section-link">VIEW ALL <i class="bi bi-arrow-right-long"></i></a>
+      </div>
+      <div class="section-divider"></div>
+      <div class="row g-4" id="moreBlogs">
+        <!-- Populated via script.js from dummy/AJAX data -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="cc-footer">
+    <div class="container-xl">
+      <div class="row gy-4">
+        <div class="col-lg-4">
+          <a class="footer-logo" href="index.html">
+            <span class="logo-box sm">CR<br>CO</span>
+          </a>
+          <p class="footer-tagline">Strategic creativity for brands that refuse to blend in.</p>
+          <div class="footer-socials">
+            <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+            <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" aria-label="Pinterest"><i class="bi bi-pinterest"></i></a>
+          </div>
+        </div>
+        <div class="col-6 col-lg-2 offset-lg-1">
+          <p class="footer-heading">Quick Links</p>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#blogContainer">Blogs</a></li>
+            <li><a href="index.html#categoriesSection">Categories</a></li>
+            <li><a href="#">Portfolio</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-lg-2">
+          <p class="footer-heading">Services</p>
+          <ul class="footer-links">
+            <li><a href="#">Content Creation</a></li>
+            <li><a href="#">Social Strategy</a></li>
+            <li><a href="#">Campaigns</a></li>
+            <li><a href="#">Branding</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3">
+          <p class="footer-heading">Stay Updated</p>
+          <p class="footer-news-text">Get our latest articles and insights delivered to your inbox.</p>
+          <div class="footer-newsletter">
+            <input type="email" placeholder="your@email.com"/>
+            <button><i class="bi bi-arrow-right-long"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 The Creative Collection Co. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

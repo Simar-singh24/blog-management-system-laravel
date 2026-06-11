@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Creative Co. — Blog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- ═══ NAVBAR ═══ -->
+  <nav class="navbar navbar-expand-lg cc-navbar sticky-top" id="mainNavbar">
+    <div class="container-xl">
+      <a class="navbar-brand cc-logo" href="index.html">
+        <span class="logo-box">CR<br>CO</span>
+      </a>
+      <button class="navbar-toggler cc-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+          <li class="nav-item"><a class="nav-link cc-nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link cc-nav-link" href="#blogContainer">Blogs</a></li>
+          <li class="nav-item"><a class="nav-link cc-nav-link" href="#categoriesSection">Categories</a></li>
+          <li class="nav-item ms-lg-3">
+            <a class="btn cc-btn-outline" href="#">Admin Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="cc-hero">
+    <div class="hero-bg-overlay"></div>
+    <div class="container-xl h-100 position-relative">
+      <div class="hero-content">
+        <p class="hero-eyebrow">Content Creation / Strategy / Campaigns</p>
+        <h1 class="hero-headline">THE CREATIVE<br><span class="hero-headline-alt">COLLECTION</span><span class="hero-co">co.</span></h1>
+        <p class="hero-sub">With a strategic mix of creativity and clarity, we guide brands through social media, content marketing, branding, and digital growth.</p>
+        <!-- Hero Search -->
+        <div class="hero-search-wrap">
+          <div class="cc-search-bar">
+            <i class="bi bi-search search-icon"></i>
+            <input type="text" id="searchInput" placeholder="Search articles, topics, ideas…" autocomplete="off"/>
+            <button class="search-btn" id="searchBtn">Search</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-ticker">
+      <span>Content Creation</span>
+      <span class="ticker-dot">/</span>
+      <span>Social Media Strategy</span>
+      <span class="ticker-dot">/</span>
+      <span>Partnerships &amp; Campaigns</span>
+      <span class="ticker-dot">/</span>
+      <span>Brand Growth</span>
+      <span class="ticker-dot">/</span>
+      <span>Influencer Marketing</span>
+      <span class="ticker-dot">/</span>
+    </div>
+  </section>
+
+  <!-- ═══ BRAND BAR ═══ -->
+  <div class="cc-brand-bar">
+    <p class="brand-label">BRANDS WE'VE WORKED WITH:</p>
+    <div class="brand-logos">
+      <span class="brand-name brand-vans">VANS</span>
+      <span class="brand-name brand-gisou">gisou</span>
+      <span class="brand-name brand-converse">CONVERSE→</span>
+      <span class="brand-name brand-elf">elf</span>
+    </div>
+  </div>
+
+  <!-- ═══ FILTER BAR ═══ -->
+  <section class="cc-filter-section" id="categoriesSection">
+    <div class="container-xl">
+      <div class="filter-header">
+        <h2 class="filter-title">EXPLORE ARTICLES</h2>
+        <p class="filter-sub">Filter by topic, date, or search above to discover the content you need.</p>
+      </div>
+      <div class="filter-controls">
+        <!-- Category Filter -->
+        <div class="filter-group">
+          <label class="filter-label">CATEGORY</label>
+          <select id="categoryFilter" class="cc-select">
+            <option value="">All Categories</option>
+            <!-- Laravel: populated via AJAX /api/categories -->
+          </select>
+        </div>
+        <!-- Date Filter -->
+        <div class="filter-group">
+          <label class="filter-label">DATE</label>
+          <select id="dateFilter" class="cc-select">
+            <option value="">All Time</option>
+            <option value="7">Last 7 Days</option>
+            <option value="30">Last 30 Days</option>
+            <option value="90">Last 3 Months</option>
+            <option value="365">This Year</option>
+          </select>
+        </div>
+        <!-- Reset -->
+        <div class="filter-group filter-reset-wrap">
+          <button class="cc-btn-reset" id="resetFilters">
+            <i class="bi bi-x-lg"></i> Reset
+          </button>
+        </div>
+      </div>
+
+      <!-- Category Pills -->
+      <div class="category-pills" id="categoryPills">
+        <!-- Populated via JS/AJAX -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FEATURED WORK / BLOG LISTING ═══ -->
+  <section class="cc-blogs-section">
+    <div class="container-xl">
+      <div class="section-header">
+        <h2 class="section-title">FEATURED WORK</h2>
+        <a href="#" class="section-link">PORTFOLIO <i class="bi bi-arrow-right-long"></i></a>
+      </div>
+      <div class="section-divider"></div>
+
+      <!-- Loading Spinner -->
+      <div id="loadingSpinner" class="cc-spinner-wrap d-none">
+        <div class="cc-spinner">
+          <span></span><span></span><span></span>
+        </div>
+        <p class="spinner-text">Loading articles…</p>
+      </div>
+
+      <!-- Blog Container — Laravel: populated via AJAX /api/blogs -->
+      <div class="row g-4" id="blogContainer">
+        <!-- Blog cards injected here by script.js -->
+      </div>
+
+      <!-- Empty State -->
+      <div id="emptyState" class="cc-empty-state d-none">
+        <i class="bi bi-journal-x"></i>
+        <h4>No articles found</h4>
+        <p>Try a different search term or filter.</p>
+        <button class="cc-btn-outline mt-3" id="emptyReset">Clear Filters</button>
+      </div>
+
+      <!-- Load More -->
+      <div class="load-more-wrap" id="loadMoreWrap">
+        <button class="cc-btn-load" id="loadMoreBtn">
+          Load More <i class="bi bi-arrow-down"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SERVICES STRIP ═══ -->
+  <section class="cc-services-strip">
+    <div class="container-xl">
+      <div class="row g-0">
+        <div class="col-md-4 service-left">
+          <h2 class="service-big-title">EXPLORE THE CREATIVE CO SUITE</h2>
+        </div>
+        <div class="col-md-8">
+          <div class="service-item">
+            <div class="service-text">
+              <h4 class="service-name">CONTENT CREATION</h4>
+              <p class="service-desc">Every post is a chance to make an impression — so we design content that's bold, thoughtful, and scroll-stopping.</p>
+            </div>
+            <a href="#" class="service-cta">TELL ME MORE <i class="bi bi-arrow-right-long"></i></a>
+          </div>
+          <div class="service-item">
+            <div class="service-text">
+              <h4 class="service-name">SOCIAL MEDIA STRATEGY</h4>
+              <p class="service-desc">We turn scattered efforts into clear, consistent growth — built on insight, intention, and audience connection.</p>
+            </div>
+            <a href="#" class="service-cta">TELL ME MORE <i class="bi bi-arrow-right-long"></i></a>
+          </div>
+          <div class="service-item">
+            <div class="service-text">
+              <h4 class="service-name">PARTNERSHIPS &amp; CAMPAIGNS</h4>
+              <p class="service-desc">Strategic brand collaborations and influencer campaigns that drive real engagement and measurable results.</p>
+            </div>
+            <a href="#" class="service-cta">TELL ME MORE <i class="bi bi-arrow-right-long"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="cc-footer">
+    <div class="container-xl">
+      <div class="row gy-4">
+        <div class="col-lg-4">
+          <a class="footer-logo" href="index.html">
+            <span class="logo-box sm">CR<br>CO</span>
+          </a>
+          <p class="footer-tagline">Strategic creativity for brands that refuse to blend in.</p>
+          <div class="footer-socials">
+            <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+            <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" aria-label="Pinterest"><i class="bi bi-pinterest"></i></a>
+          </div>
+        </div>
+        <div class="col-6 col-lg-2 offset-lg-1">
+          <p class="footer-heading">Quick Links</p>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#blogContainer">Blogs</a></li>
+            <li><a href="#categoriesSection">Categories</a></li>
+            <li><a href="#">Portfolio</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-lg-2">
+          <p class="footer-heading">Services</p>
+          <ul class="footer-links">
+            <li><a href="#">Content Creation</a></li>
+            <li><a href="#">Social Strategy</a></li>
+            <li><a href="#">Campaigns</a></li>
+            <li><a href="#">Branding</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3">
+          <p class="footer-heading">Stay Updated</p>
+          <p class="footer-news-text">Get our latest articles and insights delivered to your inbox.</p>
+          <div class="footer-newsletter">
+            <input type="email" placeholder="your@email.com"/>
+            <button><i class="bi bi-arrow-right-long"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 The Creative Collection Co. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
