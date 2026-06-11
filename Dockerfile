@@ -21,6 +21,8 @@ RUN apt-get update && apt-get install -y \
     sqlite3 \
     nodejs \
     npm \
+    nginx \
+    supervisor \
     && rm -rf /var/lib/apt/lists/*
 
 # Configure and install extensions
@@ -45,10 +47,19 @@ RUN if [ -f package.json ]; then npm ci --silent && npm run build --silent || tr
 
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache || true
 
+# Copy Nginx configuration
+COPY nginx.conf /etc/nginx/sites-available/default
+RUN mkdir -p /etc/nginx/sites-enabled && \
+    ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+
+# Create supervisor configuration for PHP-FPM and Nginx
+RUN mkdir -p /etc/supervisor/conf.d
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
 EXPOSE 8000
 
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
