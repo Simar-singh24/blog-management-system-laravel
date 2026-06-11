@@ -11,6 +11,8 @@
     
     <!-- Font Awesome (local fallback) -->
     <link rel="stylesheet" href="{{ asset('vendor/fontawesome/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/fontawesome/fontfix.css') }}">
+    <!-- fontfix: ensures local webfonts are used to render FA icons reliably -->
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
