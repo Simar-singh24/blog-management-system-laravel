@@ -1,0 +1,12 @@
+vendor
+node_modules
+.env
+.env.*
+.git
+storage/*.key
+storage/debugbar
+storage/logs
+.idea
+.vscode
+/.github
+docker-entrypoint.sh

@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: blog-management-system-laravel
+    env: docker
+    branch: main
+    dockerfilePath: ./Dockerfile
+    buildCommand: ""
+    startCommand: "/usr/local/bin/docker-entrypoint.sh php artisan serve --host=0.0.0.0 --port $PORT"
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
