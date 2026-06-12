@@ -124,7 +124,7 @@
                                             <tr>
                                                 <td>
                                                     @if($blog->image)
-                                                        <img src="{{ asset('images/' . $blog->image) }}" alt="{{ $blog->title }}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px;">
+                                                        <img src="{{ asset(str_starts_with($blog->image, 'images/') ? $blog->image : 'images/' . $blog->image) }}" alt="{{ $blog->title }}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px;">
                                                     @else
                                                         <div style="width: 50px; height: 50px; background: #ddd; border-radius: 5px; display: flex; align-items: center; justify-content: center;">
                                                             <i class="fas fa-image text-muted"></i>

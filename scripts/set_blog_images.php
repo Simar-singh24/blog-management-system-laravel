@@ -7,12 +7,12 @@ $kernel->bootstrap();
 use Illuminate\Support\Facades\DB;
 
 $images = [
-    1 => 'images/blog1.jpg',
-    2 => 'images/blog2.jpg',
-    3 => 'images/blog3.jpg',
-    4 => 'images/blog4.jpg',
-    5 => 'images/blog5.jpg',
-    6 => 'images/blog6.jpg',
+    1 => 'blog1.jpg',
+    2 => 'blog2.jpg',
+    3 => 'blog3.jpg',
+    4 => 'blog4.jpg',
+    5 => 'blog5.jpg',
+    6 => 'blog6.jpg',
 ];
 
 foreach ($images as $id => $path) {

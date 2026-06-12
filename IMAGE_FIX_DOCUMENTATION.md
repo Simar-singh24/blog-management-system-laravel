@@ -186,8 +186,8 @@ If you had user-uploaded images before this change:
 ## Future Uploads
 
 All new blog image uploads will now:
-1. Be stored in `public/images/images/` (due to the store('images') call)
-2. Be accessible immediately via `asset('images/images/...')`
+1. Be stored in `public/images/` (uploads are saved directly to the public images folder)
+2. Be accessible immediately via `asset('images/...')`
 3. Persist through the current deployment
 4. Be lost on restart (inherent to Render Free ephemeral filesystem)
 

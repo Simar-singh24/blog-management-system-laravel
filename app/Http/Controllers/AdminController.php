@@ -64,8 +64,9 @@ class AdminController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('images', 'public');
-            $validated['image'] = $imagePath;
+            $imageName = $request->file('image')->hashName();
+            $request->file('image')->storeAs('images', $imageName, 'public');
+            $validated['image'] = $imageName;
         }
 
         Blog::create($validated);
@@ -101,10 +102,12 @@ class AdminController extends Controller
         if ($request->hasFile('image')) {
             // Delete old image
             if ($blog->image) {
-                \Storage::disk('public')->delete($blog->image);
+                $oldImagePath = str_starts_with($blog->image, 'images/') ? $blog->image : 'images/' . $blog->image;
+                \Storage::disk('public')->delete($oldImagePath);
             }
-            $imagePath = $request->file('image')->store('images', 'public');
-            $validated['image'] = $imagePath;
+            $imageName = $request->file('image')->hashName();
+            $request->file('image')->storeAs('images', $imageName, 'public');
+            $validated['image'] = $imageName;
         }
 
         $blog->update($validated);
@@ -118,7 +121,8 @@ class AdminController extends Controller
     public function destroy(Blog $blog)
     {
         if ($blog->image) {
-            \Storage::disk('public')->delete($blog->image);
+            $oldImagePath = str_starts_with($blog->image, 'images/') ? $blog->image : 'images/' . $blog->image;
+            \Storage::disk('public')->delete($oldImagePath);
         }
         $blog->delete();
 

@@ -64,7 +64,7 @@
                 <!-- Featured Image -->
                 @if($blog->image)
                     <div class="mb-5 rounded overflow-hidden">
-                        <img src="{{ asset('images/' . $blog->image) }}" alt="{{ $blog->title }}" class="img-fluid w-100">
+                        <img src="{{ asset(str_starts_with($blog->image, 'images/') ? $blog->image : 'images/' . $blog->image) }}" alt="{{ $blog->title }}" class="img-fluid w-100">
                     </div>
                 @else
                     <div class="mb-5 rounded overflow-hidden" style="background: linear-gradient(135deg, #8B0000, #C41E3A); height: 400px; display: flex; align-items: center; justify-content: center;">
@@ -111,7 +111,7 @@
                         <div class="card h-100 rounded-0 shadow-sm overflow-hidden" style="border: none;">
                             <div class="position-relative overflow-hidden" style="height: 200px; background: linear-gradient(135deg, #8B0000, #C41E3A);">
                                 @if($relatedBlog->image)
-                                    <img src="{{ asset('images/' . $relatedBlog->image) }}" alt="{{ $relatedBlog->title }}" class="w-100 h-100 object-fit-cover">
+                                    <img src="{{ asset(str_starts_with($relatedBlog->image, 'images/') ? $relatedBlog->image : 'images/' . $relatedBlog->image) }}" alt="{{ $relatedBlog->title }}" class="w-100 h-100 object-fit-cover">
                                 @else
                                     <div class="w-100 h-100 d-flex align-items-center justify-content-center">
                                         <i class="fas fa-image text-white" style="font-size: 2rem; opacity: 0.5;"></i>

@@ -92,7 +92,7 @@
                     <!-- Featured card: premium hero-side article (glassmorphism) -->
                     <article class="featured-card" aria-labelledby="featured-title">
                         {{-- Featured media --}}
-                        <img class="featured-media" src="{{ $featured && $featured->image ? asset('images/' . $featured->image) : asset('images/hero-card.jpg') }}" alt="{{ $featured->title ?? 'Featured' }}">
+                        <img class="featured-media" src="{{ $featured && $featured->image ? asset(str_starts_with($featured->image, 'images/') ? $featured->image : 'images/' . $featured->image) : asset('images/hero-card.jpg') }}" alt="{{ $featured->title ?? 'Featured' }}">
 
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-start">
